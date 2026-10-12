@@ -1,0 +1,362 @@
+/* =========================================
+   ECLYPS — CARROSSEL 3D
+========================================= */
+
+.hero-right {
+    width: 50%;
+    height: 650px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    perspective: 1400px;
+
+    position: relative;
+}
+
+/* Área do carrossel */
+
+.slider {
+    width: 100%;
+    height: 500px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform-style: preserve-3d;
+}
+
+/* =========================================
+   CARD
+========================================= */
+
+.anime {
+    position: absolute;
+
+    width: 245px;
+    height: 365px;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    background: #111;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.8);
+
+    transition:
+        transform .7s cubic-bezier(.22,.61,.36,1),
+        opacity .7s ease,
+        filter .7s ease,
+        box-shadow .7s ease;
+
+    transform-style: preserve-3d;
+
+    cursor: pointer;
+}
+
+/* imagem */
+
+.anime img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform .7s ease;
+}
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.anime::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 45%,
+            rgba(0,0,0,.15) 60%,
+            rgba(0,0,0,.95) 100%
+        );
+
+    pointer-events: none;
+}
+
+/* =========================================
+   CARD ATIVO
+========================================= */
+
+.anime.active {
+
+    transform:
+        translate3d(0, 0, 80px)
+        rotateY(0deg)
+        scale(1.08);
+
+    z-index: 10;
+
+    filter: brightness(1.08);
+
+    border-color: rgba(139,92,246,.8);
+
+    box-shadow:
+
+        0 30px 70px rgba(0,0,0,.9),
+
+        0 0 35px rgba(139,92,246,.45),
+
+        0 0 90px rgba(91,44,255,.20);
+}
+
+/* =========================================
+   CARD ANTERIOR
+========================================= */
+
+.anime.prev {
+
+    transform:
+        translate3d(-210px, 20px, -100px)
+        rotateY(28deg)
+        scale(.82);
+
+    z-index: 5;
+
+    filter:
+        brightness(.55)
+        blur(.2px);
+
+    opacity: .85;
+}
+
+/* =========================================
+   CARD SEGUINTE
+========================================= */
+
+.anime.next {
+
+    transform:
+        translate3d(210px, 20px, -100px)
+        rotateY(-28deg)
+        scale(.82);
+
+    z-index: 5;
+
+    filter:
+        brightness(.55)
+        blur(.2px);
+
+    opacity: .85;
+}
+
+/* =========================================
+   CARDS MAIS DISTANTES
+========================================= */
+
+.anime.far-prev {
+
+    transform:
+        translate3d(-370px, 45px, -250px)
+        rotateY(38deg)
+        scale(.65);
+
+    z-index: 2;
+
+    opacity: .35;
+
+    filter: brightness(.35);
+}
+
+.anime.far-next {
+
+    transform:
+        translate3d(370px, 45px, -250px)
+        rotateY(-38deg)
+        scale(.65);
+
+    z-index: 2;
+
+    opacity: .35;
+
+    filter: brightness(.35);
+}
+
+/* =========================================
+   CARD ESCONDIDO
+========================================= */
+
+.anime.hidden {
+
+    opacity: 0;
+
+    transform:
+        translate3d(0, 80px, -400px)
+        scale(.4);
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+/* =========================================
+   HOVER
+========================================= */
+
+.anime:hover img {
+
+    transform: scale(1.06);
+
+}
+
+.anime.active:hover {
+
+    box-shadow:
+
+        0 35px 80px rgba(0,0,0,.9),
+
+        0 0 45px rgba(139,92,246,.65),
+
+        0 0 120px rgba(91,44,255,.3);
+}
+
+/* =========================================
+   BRILHO DO CARD ATIVO
+========================================= */
+
+.anime.active::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    pointer-events: none;
+
+    background:
+
+        linear-gradient(
+            120deg,
+            transparent 25%,
+            rgba(255,255,255,.15) 50%,
+            transparent 75%
+        );
+
+    transform: translateX(-100%);
+
+    animation: shine 5s infinite;
+}
+
+@keyframes shine {
+
+    0% {
+        transform: translateX(-100%);
+    }
+
+    25% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 1200px) {
+
+    .anime {
+        width: 210px;
+        height: 315px;
+    }
+
+    .anime.prev {
+        transform:
+            translate3d(-170px, 20px, -100px)
+            rotateY(25deg)
+            scale(.78);
+    }
+
+    .anime.next {
+        transform:
+            translate3d(170px, 20px, -100px)
+            rotateY(-25deg)
+            scale(.78);
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .hero-right {
+
+        width: 100%;
+
+        height: 430px;
+
+        margin-top: 30px;
+
+    }
+
+    .slider {
+
+        transform: scale(.8);
+
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .hero-right {
+
+        height: 350px;
+
+    }
+
+    .slider {
+
+        transform: scale(.65);
+
+    }
+
+    .anime.prev {
+
+        transform:
+            translate3d(-130px, 20px, -100px)
+            rotateY(25deg)
+            scale(.75);
+
+    }
+
+    .anime.next {
+
+        transform:
+            translate3d(130px, 20px, -100px)
+            rotateY(-25deg)
+            scale(.75);
+
+    }
+
+}
