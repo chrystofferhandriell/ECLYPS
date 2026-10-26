@@ -110,3 +110,31 @@
     box-shadow: 0 0 15px #8b5cf6;
 }
 
+.footer {
+    width: 100%;
+    border-top: solid 1px #8b5cf6;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+h2{
+     border-left: solid 5px #8b5cf6;
+     border-bottom: solid 1px #8a5cf621;
+     padding-left: 10px;
+
+}
+a{
+    display: flex;
+    justify-content:flex-end;
+    font-size: 12px;
+    color:#8b5cf6;
+    text-decoration:none;
+    font-size: 12px;
+    font-weight:900;
+}
+a:hover{
+    color:#8c00ff;
+}
+

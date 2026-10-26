@@ -58,23 +58,27 @@ function stopAutoSlide() {
     clearInterval(autoSlide);
 }
 
-// Permite clicar nos indicadores
-dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-        currentIndex = index;
-        updateCarousel();
+
+ // Permite clicar nos cards e pausar ao passar o mouse
+animeCards.forEach((card, index) => {
+    // Pausa quando o mouse entra na imagem
+    card.addEventListener("mouseenter", () => {
+        stopAutoSlide();
+    });
+
+    // Continua quando o mouse sai da imagem
+    card.addEventListener("mouseleave", () => {
         startAutoSlide();
     });
-});
 
-// Permite clicar nos cards
-animeCards.forEach((card, index) => {
+    // Permite selecionar um anime pelo clique
     card.addEventListener("click", () => {
         currentIndex = index;
         updateCarousel();
         startAutoSlide();
     });
 });
+
 
 // Inicia o carrossel automático
 updateCarousel();
